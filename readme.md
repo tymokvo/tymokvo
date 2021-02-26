@@ -4,22 +4,22 @@ Trained architect turned software developer.
 
 ## Skills
 
-- :one: / :keycap_ten:
+- `1 / 10`
   - Means that I have heard of it
-- :keycap_ten: / :keycap_ten:
+- `10 / 10`
   - Means that I would feel comfortable teaching a graduate-level class about it
 - The scale is exponential.
 
-| Name       | Level                  | Especially with...                                        |
-| ---------- | ---------------------- | --------------------------------------------------------- |
-| Python     | :eight: / :keycap_ten: | `pytorch` `starlette` `sqlalchemy` `jupyter` `matplotlib` |
-| Git/GitHub | :eight: / :keycap_ten: | `GitHub Actions`                                          |
-| Kubernetes | :eight: / :keycap_ten: | `AWS EKS`                                                 |
-| Docker     | :seven: / :keycap_ten: | `docker-compose`                                          |
-| .NET       | :seven: / :keycap_ten: | `F#` `C#` `ASP.NET` `MathNet.Numerics` `WPF` `UWP`        |
-| SQL        | :six: / :keycap_ten:   | `PostgreSQL` `PostGIS`                                    |
-| Android    | :five: / :keycap_ten:  | `Kotlin`                                                  |
-| Julia      | :five: / :keycap_ten:  |                                                           |
+| Name       | Level    | Especially with...                                        |
+| ---------- | -------- | --------------------------------------------------------- |
+| Python     | `8 / 10` | `pytorch` `starlette` `sqlalchemy` `jupyter` `matplotlib` |
+| Git/GitHub | `8 / 10` | `GitHub Actions`                                          |
+| Kubernetes | `8 / 10` | `AWS EKS`                                                 |
+| Docker     | `7 / 10` | `docker-compose`                                          |
+| .NET       | `7 / 10` | `F#` `C#` `ASP.NET` `MathNet.Numerics` `WPF` `UWP`        |
+| SQL        | `6 / 10` | `PostgreSQL` `PostGIS`                                    |
+| Android    | `5 / 10` | `Kotlin`                                                  |
+| Julia      | `5 / 10` |                                                           |
 
 ## Interests
 
