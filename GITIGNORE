@@ -1,0 +1,8 @@
+# Just my global gitignore
+
+# Editors
+.vscode/
+
+# Environments
+.venv*/
+
