@@ -1,12 +1,27 @@
 #! /usr/bin/env bash
 
+lang_c_utf8 () {
+    # Use the C lang utf 8 locale before calling the passed function
+    LANG=C.UTF-8 $1
+}
+
+alias preferred_locale=lang_c_utf8
+
+_lhal () {
+    ls -hal
+}
+
 lhal () {
     # List files with human readable sizes, even the hidden ones, the long way.
-    ls -hal
+    preferred_locale _lhal
+}
+
+_lha1 () {
+    ls -ha1
 }
 
 lha1 () {
     # List files with human readable sizes, even the hidden ones,
     # the short way.
-    ls -ha1
+    preferred_locale _lha1
 }
