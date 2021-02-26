@@ -1,5 +1,12 @@
 #! /usr/bin/env bash
 
 lhal () {
+    # List files with human readable sizes, even the hidden ones, the long way.
     ls -hal
+}
+
+lha1 () {
+    # List files with human readable sizes, even the hidden ones,
+    # the short way.
+    ls -ha1
 }
