@@ -1,5 +1,11 @@
 #! /usr/bin/env bash
 
+timestyle_long_iso () {
+    TIME_STYLE='long-iso'
+}
+
+alias preferred_time=timestyle_long_iso
+
 lang_c_utf8 () {
     # Use the C lang utf 8 locale before calling the passed function
     LANG=C.UTF-8 $1
@@ -13,7 +19,7 @@ _lhal () {
 
 lhal () {
     # List files with human readable sizes, even the hidden ones, the long way.
-    preferred_locale _lhal
+    preferred_time preferred_locale _lhal
 }
 
 _lha1 () {
@@ -23,5 +29,5 @@ _lha1 () {
 lha1 () {
     # List files with human readable sizes, even the hidden ones,
     # the short way.
-    preferred_locale _lha1
+    preferred_time preferred_locale _lha1
 }
