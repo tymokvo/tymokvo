@@ -5,6 +5,7 @@
 
 # Environments
 .venv*/
+venv*/
 
 # Tools
 .ionide/
