@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+# Enable advanced globbing
+shopt -s globstar
+
 preferences () {
     LANG='C.UTF-8' TIME_STYLE='long-iso' $1
 }
