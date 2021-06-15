@@ -9,3 +9,6 @@ venv*/
 
 # Tools
 .ionide/
+
+# Misc
+.scratch/
