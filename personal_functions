@@ -31,3 +31,6 @@ randstring () {
     nBytes="$(($n * 2))"
     head -"$nBytes" /dev/urandom | LC_ALL=c tr -dc 'a-zA-Z0-9\-\+\!' | fold -w "$n" | head -n 1
 }
+
+git config --global alias.logpo 'log --pretty=oneline'
+git config --global alias.logshort 'log --pretty=format:"%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s" --date=short'
