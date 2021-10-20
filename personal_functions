@@ -32,5 +32,13 @@ randstring () {
     head -"$nBytes" /dev/urandom | LC_ALL=c tr -dc 'a-zA-Z0-9\-\+\!' | fold -w "$n" | head -n 1
 }
 
+findex () {
+    # Find paths in directory $1 matching the regex in $2
+    # The regex should be enclosed in quotes to avoid globbing
+    find ${1:?'Must set path'} \
+        -regex ${2:?'Must set regex'} \
+        -regextype posix-extended
+}
+
 git config --global alias.logpo 'log --pretty=oneline'
 git config --global alias.logshort 'log --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D" --date=short'
