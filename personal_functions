@@ -47,4 +47,7 @@ pcd () {
 
 git config --global alias.logpo 'log --pretty=oneline'
 git config --global alias.logshort 'log --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D" --date=short'
+git config --global alias.s 'stage'
+git config --global alias.cm 'commit -m'
 git config --global alias.csm 'commit -S -m'
+git config --global alias.sCm '!f() { git stage "${GIT_PREFIX}${1:?}" && git commit -m "${2:?}"; }; f'
