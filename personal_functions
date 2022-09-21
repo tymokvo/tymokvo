@@ -54,7 +54,7 @@ function setColor () {
 	echo "$(tput setaf $1)"
 }
 
-function unsetColor () {
+function unsetStyling () {
 	echo "$(tput sgr0)"
 }
 
@@ -85,7 +85,7 @@ function color () {
             setColor 7
             ;;
         'unset')
-            unsetColor
+            unsetStyling
             ;;
         *)
             setColor 7
@@ -93,8 +93,46 @@ function color () {
     esac
 }
 
+function setStyle () {
+    echo "$(tput $1)"
+}
+
+function style () {
+    case "${1:-'normal'}" in
+        'bold')
+            setStyle bold
+            ;;
+        'underline')
+            setStyle smul
+            ;;
+        'blink')
+            setStyle blink
+            ;;
+        'reverse')
+            setStyle smso
+            ;;
+        'normal')
+            unsetStyling
+            ;;
+        'unset')
+            unsetStyling
+            ;;
+        *)
+            unsetStyling
+            ;;
+    esac
+}
+
 function colorThis () {
     echo "$(color ${1})${2}$(color unset)"
+}
+
+function styleThis () {
+    echo "$(style ${1})${2}$(style unset)"
+}
+
+function styleColorThis () {
+    echo "$(style ${1})$(color ${2})${3}$(color unset)$(style unset)"
 }
 
 git config --global alias.logpo 'log --pretty=oneline'
