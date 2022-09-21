@@ -45,6 +45,58 @@ pcd () {
     cd $*
 }
 
+alias xcc='xclip -selection c'
+
+export PS1EscStart='\['
+export PS1EscEnd='\]'
+
+function setColor () {
+	echo "$(tput setaf $1)"
+}
+
+function unsetColor () {
+	echo "$(tput sgr0)"
+}
+
+function color () {
+    case "${1:-'white'}" in
+        'red')
+            setColor 1
+            ;;
+        'green')
+            setColor 2
+            ;;
+        'yellow')
+            setColor 3
+            ;;
+        'powderBlue')
+            setColor 153
+            ;;
+        'blue')
+            setColor 4
+            ;;
+        'magenta')
+            setColor 5
+            ;;
+        'cyan')
+            setColor 6
+            ;;
+        'white')
+            setColor 7
+            ;;
+        'unset')
+            unsetColor
+            ;;
+        *)
+            setColor 7
+            ;;
+    esac
+}
+
+function colorThis () {
+    echo "$(color ${1})${2}$(color unset)"
+}
+
 git config --global alias.logpo 'log --pretty=oneline'
 git config --global alias.logshort 'log --pretty="format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(7,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D" --date=short'
 git config --global alias.s 'stage'
