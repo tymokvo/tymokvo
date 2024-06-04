@@ -12,11 +12,12 @@ Trained architect turned software developer.
 
 | Name       | Level    | Especially with...                                        |
 | ---------- | -------- | --------------------------------------------------------- |
+| .NET       | `9 / 10` | `F#` `C#` `ASP.NET` `MathNet.Numerics` `WPF` `UWP`        |
 | Python     | `8 / 10` | `pytorch` `starlette` `sqlalchemy` `jupyter` `matplotlib` |
 | Git/GitHub | `8 / 10` | `GitHub Actions`                                          |
-| Kubernetes | `8 / 10` | `AWS EKS`                                                 |
+| Kubernetes | `8 / 10` | `AWS EKS` `GKE`                                           |
 | Docker     | `7 / 10` | `docker-compose`                                          |
-| .NET       | `7 / 10` | `F#` `C#` `ASP.NET` `MathNet.Numerics` `WPF` `UWP`        |
+| Typescript | `7 / 10` | `svelte` `three.js` `firebase`                            |
 | SQL        | `6 / 10` | `PostgreSQL` `PostGIS`                                    |
 | Android    | `5 / 10` | `Kotlin`                                                  |
 | Julia      | `5 / 10` |                                                           |
