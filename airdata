@@ -1,3 +1,5 @@
 #! /usr/bin/env bash
 
-curl -s http://airbox-lr.lan/air-data/latest | jq '{score, temp, humid, dew_point}'
+query='{score, temp, humid, dew_point}'
+
+curl -s http://airbox-lr.lan/air-data/latest | jq "${query}"
