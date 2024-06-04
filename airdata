@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
-query='{score, temp, humid, dew_point}'
+if [ "$#" == 0 ]; then
+    query='.'
+else
+    args="${@:2}"
+    query="{$1$(printf ',%s' $args)}"
+fi
 
 curl -s http://airbox-lr.lan/air-data/latest | jq "${query}"
