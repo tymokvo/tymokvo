@@ -46,9 +46,13 @@ type SessionState =
             yield!
                 z.sessions
                 |> Map.map (fun k v ->
-                    $"{k}({v |> List.length}): ["
+                    let date = $"%04d{k.Year}-%02d{k.Month}-%02d{k.Day} %02d{k.Hour}:%02d{k.Minute}"
+
+                    $"%s{date}({v |> List.length}): ["
                     + (v
-                       |> List.map (fun f -> $"%02d{f.s.TimeOfDay.Hours}:%02d{f.s.TimeOfDay.Minutes}({f.duration})")
+                       |> List.map (fun f ->
+                           $"%02d{f.s.TimeOfDay.Hours}:%02d{f.s.TimeOfDay.Minutes}(%02d{int f.duration})"
+                       )
                        |> String.concat "; ")
                     + "]"
                 )
