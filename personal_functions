@@ -40,9 +40,14 @@ findex () {
         -regextype posix-extended
 }
 
-pcd () {
+cdp () {
     pushd $*
     cd $*
+}
+
+cdl () {
+    cd $*
+    find . -mindepth 1 -maxdepth 1 -type d -printf "%f/\n"
 }
 
 alias xcc='xclip -selection c'
