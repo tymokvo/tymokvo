@@ -1,0 +1,5 @@
+[*]
+end_of_line=lf
+[*.{fsx,fs}]
+fsharp_multiline_bracket_style=aligned
+fsharp_multi_line_lambda_closing_newline=true
