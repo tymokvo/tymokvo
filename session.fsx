@@ -11,14 +11,22 @@ type Feeding =
     {
         s: System.DateTime
         e: System.DateTime
+        src: string
     }
 
     member z.duration = (z.e - z.s).TotalMinutes
 
-let feeding s e = { s = s; e = e }
+    member z.source =
+        match z.src with
+        | "right" -> "R"
+        | "left" -> "L"
+        | "bottle" -> "B"
+        | _ -> "?"
 
-let fromRow da ta db tb =
-    feeding (datetime da ta) (datetime db tb)
+let feeding s e src = { s = s; e = e; src = src }
+
+let fromRow da ta db tb src =
+    feeding (datetime da ta) (datetime db tb) src
 
 let interduration (later: System.DateTime) (earlier: System.DateTime) =
     (later - earlier).TotalMinutes * 1.0<minute>
@@ -29,7 +37,7 @@ let fdb = FeedingRecords.Load("./Feeding Records.csv")
 let feedings =
     [
         for row in fdb.Rows do
-            fromRow row.StartDate row.Start row.EndDate row.End
+            fromRow row.StartDate row.Start row.EndDate row.End row.Source
     ]
 
 type SessionState =
@@ -42,21 +50,31 @@ type SessionState =
 
     override z.ToString() =
         [
-            $"Feeding Sessions ({Map.count z.sessions}):"
+            $"Feeding Sessions:"
             yield!
                 z.sessions
-                |> Map.map (fun k v ->
-                    let date = $"%04d{k.Year}-%02d{k.Month}-%02d{k.Day} %02d{k.Hour}:%02d{k.Minute}"
+                |> Map.toSeq
+                |> Seq.groupBy (fun (k, _) -> k.Date)
+                |> Seq.collect (fun (date, sessions) ->
+                    let header = $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}"
 
-                    $"%s{date}({v |> List.length}): ["
-                    + (v
-                       |> List.map (fun f ->
-                           $"%02d{f.s.TimeOfDay.Hours}:%02d{f.s.TimeOfDay.Minutes}(%02d{int f.duration})"
-                       )
-                       |> String.concat "; ")
-                    + "]"
+                    seq {
+                        String.replicate (String.length header) "-"
+                        header
+
+                        yield!
+                            sessions
+                            |> Seq.map (fun (_, fs) ->
+                                "["
+                                + (fs
+                                   |> Seq.map (fun f ->
+                                       $"%02d{f.s.Hour}:%02d{f.s.Minute}({f.source})(%02d{int f.duration})"
+                                   )
+                                   |> String.concat "; ")
+                                + "]"
+                            )
+                    }
                 )
-                |> Map.values
         ]
 
         |> String.concat System.Environment.NewLine
