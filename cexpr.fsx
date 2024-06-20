@@ -93,3 +93,17 @@ module Eventually =
 
             return 3 + 4
         }
+
+module Logging =
+    type LoggingBuilder() =
+        let log = printfn "%A"
+
+        member z.Bind(x, f) =
+            log x
+            f x
+
+        member z.Return(x) = x
+
+        member z.Zero() = ()
+
+    let logging = new LoggingBuilder()
