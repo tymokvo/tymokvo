@@ -72,24 +72,24 @@ module Eventually =
             (whileLoop (fun () -> ie.MoveNext()) (delay (fun () -> let value = ie.Current in f value)))
             (fun () -> ie.Dispose())
 
-type EventuallyBuilder() =
-    member z.Bind(c, f) = Eventually.bind f c
-    member z.Return(v) = Eventually.result v
-    member z.ReturnFrom(v) = v
-    member z.Combine(ea, eb) = Eventually.combine ea eb
-    member z.Delay(f) = Eventually.delay f
-    member z.Zero() = Eventually.result ()
-    member z.TryWith(e, h) = Eventually.tryWith e h
-    member z.TryFinally(e, fin) = Eventually.tryFinally e fin
-    member z.For(coll, f) = Eventually.forLoop coll f
-    member z.Using(r, e) = Eventually.using r e
+    type EventuallyBuilder() =
+        member z.Bind(c, f) = bind f c
+        member z.Return(v) = result v
+        member z.ReturnFrom(v) = v
+        member z.Combine(ea, eb) = combine ea eb
+        member z.Delay(f) = delay f
+        member z.Zero() = result ()
+        member z.TryWith(e, h) = tryWith e h
+        member z.TryFinally(e, fin) = tryFinally e fin
+        member z.For(coll, f) = forLoop coll f
+        member z.Using(r, e) = using r e
 
-let eventually = new EventuallyBuilder()
+    let eventually = new EventuallyBuilder()
 
-let comp =
-    eventually {
-        for x in 1..2 do
-            printfn $"x = %d{x}"
+    let comp =
+        eventually {
+            for x in 1..2 do
+                printfn $"x = %d{x}"
 
-        return 3 + 4
-    }
+            return 3 + 4
+        }
