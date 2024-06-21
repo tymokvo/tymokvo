@@ -64,8 +64,8 @@ type SessionState =
 
                         yield!
                             sessions
-                            |> Seq.map (fun (_, fs) ->
-                                "["
+                            |> Seq.mapi (fun idx (_, fs) ->
+                                $"%02d{idx + 1}: ["
                                 + (fs
                                    |> Seq.map (fun f ->
                                        $"%02d{f.s.Hour}:%02d{f.s.Minute}({f.source})(%02d{int f.duration})"
