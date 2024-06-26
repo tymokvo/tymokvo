@@ -54,6 +54,7 @@ type SessionState =
             yield!
                 z.sessions
                 |> Map.toSeq
+                |> Seq.sortByDescending (fun (k, _) -> k.Date)
                 |> Seq.groupBy (fun (k, _) -> k.Date)
                 |> Seq.collect (fun (date, sessions) ->
                     let header = $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}"
