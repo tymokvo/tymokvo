@@ -14,7 +14,7 @@ type Feeding =
         src: string
     }
 
-    member z.duration = (z.e - z.s).TotalMinutes
+    member z.duration = (z.e - z.s).TotalMinutes * 1.0<minute>
 
     member z.source =
         match z.src with
@@ -40,6 +40,11 @@ let feedings =
             fromRow row.StartDate row.Start row.EndDate row.End row.Source
     ]
 
+let (|/) a b = b / a
+
+let averageDuration (fs: Feeding seq) =
+    fs |> Seq.sumBy (fun f -> f.duration) |> (|/) (fs |> Seq.length |> float)
+
 type SessionState =
     private
         {
@@ -57,7 +62,10 @@ type SessionState =
                 |> Seq.sortByDescending (fun (k, _) -> k.Date)
                 |> Seq.groupBy (fun (k, _) -> k.Date)
                 |> Seq.collect (fun (date, sessions) ->
-                    let header = $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}"
+                    let avg = sessions |> Seq.collect snd |> averageDuration
+
+                    let header =
+                        $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}: Avg: %0.1f{avg} min"
 
                     seq {
                         String.replicate (String.length header) "-"
