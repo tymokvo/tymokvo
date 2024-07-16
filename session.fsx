@@ -62,10 +62,13 @@ type SessionState =
                 |> Seq.sortByDescending (fun (k, _) -> k.Date)
                 |> Seq.groupBy (fun (k, _) -> k.Date)
                 |> Seq.collect (fun (date, sessions) ->
-                    let avg = sessions |> Seq.collect snd |> averageDuration
+                    let sessionsOnly = sessions |> Seq.collect snd
+                    let avg = sessionsOnly |> averageDuration
+                    let min = sessionsOnly |> Seq.map (fun f -> f.duration) |> Seq.min
+                    let max = sessionsOnly |> Seq.map (fun f -> f.duration) |> Seq.max
 
                     let header =
-                        $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}: Avg: %0.1f{avg} min"
+                        $"{date.DayOfWeek}: {date.Year}-%02d{date.Month}-%02d{date.Day}: (mn: %0.1f{min}; μ: %0.1f{avg}; mx: %0.1f{max}) min"
 
                     seq {
                         String.replicate (String.length header) "-"
